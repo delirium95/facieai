@@ -154,10 +154,7 @@ async def ask_friend(message: Message, command: CommandObject):
     async with aiohttp.ClientSession() as session:
         async with session.post(f"{BACKEND_BASE_URL}/friends/{friend_id}/ask/") as resp:
             data = await resp.json()
-    text = data.get("generated_text")
-    if len(text) > 100:
-        await message.reply(text[:100])
-    await message.reply(text)
+    await message.reply(data)
 
 if __name__ == "__main__":
     asyncio.run(dp.start_polling(bot))
