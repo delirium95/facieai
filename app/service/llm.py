@@ -29,7 +29,7 @@ class LlmService:
                 messages=[
                     {"role": "user", "content": question}
                 ],
-                max_tokens=200
+                max_completion_tokens=200
             )
             return {"generated_text": response.choices[0].message.content}
         except Exception as e:
