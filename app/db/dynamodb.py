@@ -1,6 +1,6 @@
 import boto3
-from app.core import app_settings
 
+from app.core import app_settings
 
 dynamodb = boto3.resource(
     'dynamodb',

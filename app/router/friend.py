@@ -3,7 +3,6 @@ import uuid
 from typing import Optional
 
 from fastapi import APIRouter, UploadFile, Form, Depends
-from openai import OpenAI
 from starlette import status
 from starlette.responses import StreamingResponse
 
@@ -11,7 +10,6 @@ from app.core.app_settings import app_settings
 from app.db import s3_client
 from app.dependencies import get_friend_service, get_llm_service
 from app.schema import FriendObject
-from app.schema.prompt import PromptRequest
 from app.service import LlmService
 from app.service.friend import FriendService
 

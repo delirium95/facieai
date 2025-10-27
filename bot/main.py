@@ -1,7 +1,6 @@
 import asyncio
 from io import BytesIO
 
-import httpx
 from aiogram import Bot, Dispatcher, Router, F
 from aiogram.client.session import aiohttp
 from aiogram.filters import Command, CommandObject

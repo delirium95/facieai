@@ -1,4 +1,5 @@
 import boto3
+
 from app.core import app_settings
 
 s3_client = boto3.client(

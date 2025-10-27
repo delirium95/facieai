@@ -1,7 +1,6 @@
-from fastapi.testclient import TestClient
 from io import BytesIO
-import uuid
-import pytest
+
+from fastapi.testclient import TestClient
 
 from app.main import app  # твій FastAPI додаток
 
