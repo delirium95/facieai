@@ -32,11 +32,12 @@ class FriendService:
 
 
     async def upload_photo(self, photo):
-        if photo.content_type not in ["image/jpeg", "image/png"]:
-            raise HTTPException
-        contents = await photo.read()
-        if len(contents) > 10 * 1024 * 1024:
-            raise HTTPException
+        if photo is not None:
+            if photo.content_type not in ["image/jpeg", "image/png"]:
+                raise HTTPException
+            contents = await photo.read()
+            if len(contents) > 10 * 1024 * 1024:
+                raise HTTPException
         file_extension = photo.filename.split(".")[-1]
         file_key = f"friends/{uuid.uuid4()}.{file_extension}"
 
