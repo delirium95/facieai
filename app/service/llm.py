@@ -28,7 +28,8 @@ class LlmService:
                 model="gpt-5-nano",
                 messages=[
                     {"role": "user", "content": question}
-                ]
+                ],
+                max_tokens=200
             )
             return {"generated_text": response.choices[0].message.content}
         except Exception as e:
