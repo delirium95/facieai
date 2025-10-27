@@ -154,7 +154,7 @@ async def ask_friend(message: Message, command: CommandObject):
     async with aiohttp.ClientSession() as session:
         async with session.post(f"{BACKEND_BASE_URL}/friends/{friend_id}/ask/") as resp:
             data = await resp.json()
-    text = data["generated_text"]
+    text = data.get("generated_text")
     await message.reply(text)
 
 
