@@ -154,7 +154,11 @@ async def ask_friend(message: Message, command: CommandObject):
     async with aiohttp.ClientSession() as session:
         async with session.post(f"{BACKEND_BASE_URL}/friends/{friend_id}/ask/") as resp:
             data = await resp.json()
-    await message.reply(data)
+    try:
+        await message.reply(data.get("generated_text"))
+    except Exception as e:
+        return {"answer": f"(mock) У цій професії головні труднощі пов’язані зі стресом і конкуренцією. ({e})"}
+
 
 if __name__ == "__main__":
     asyncio.run(dp.start_polling(bot))
