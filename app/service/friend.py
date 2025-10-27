@@ -1,5 +1,7 @@
 import uuid
 
+from fastapi import HTTPException
+
 from app.core import app_settings
 from app.db import s3_client
 from app.schema import FriendObject, FriendResponseList
@@ -30,6 +32,11 @@ class FriendService:
 
 
     async def upload_photo(self, photo):
+        if photo.content_type not in ["image/jpeg", "image/png"]:
+            raise HTTPException
+        contents = await photo.read()
+        if len(contents) > 10 * 1024 * 1024:
+            raise HTTPException
         file_extension = photo.filename.split(".")[-1]
         file_key = f"friends/{uuid.uuid4()}.{file_extension}"
 
