@@ -152,11 +152,6 @@ async def ask_friend(message: Message, command: CommandObject):
         await message.reply("❌ Будь ласка, вкажи ID друга: /friend <id>")
         return
     async with aiohttp.ClientSession() as session:
-        async with session.get(f"{BACKEND_BASE_URL}/friends/{friend_id}/") as resp:
-            if resp.status != 200:
-                await message.reply(f"❌ Друг з ID {friend_id} не знайдений.")
-                return
-            data = await resp.json()
         async with session.post(f"{BACKEND_BASE_URL}/friends/{friend_id}/ask/") as resp:
             data = await resp.json()
     text = data["generated_text"]
