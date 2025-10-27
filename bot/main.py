@@ -48,8 +48,8 @@ async def cmd_friends(message: Message):
             for friend in friends:
                 text = f"Name:{friend['name']}\nProfession:{friend['profession']}\nDescription:{friend['profession_description']}\n"
                 if friend.get("photo_url"):
-                    file = URLInputFile(friend.get("photo_url"))
-                    await message.answer_photo(file, caption=text)
+                    file = friend.get("photo_url")
+                    await message.answer_photo(photo=file, caption=text)
                 else:
                     await message.answer(text)
 
